@@ -6,9 +6,20 @@ import { ItemsComponent } from './item/items.component'
 import { ItemDetailComponent } from './item/item-detail.component'
 
 const routes: Routes = [
-  { path: '', redirectTo: '/items', pathMatch: 'full' },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'items', component: ItemsComponent },
   { path: 'item/:id', component: ItemDetailComponent },
+
+  {
+    path: 'home',
+    loadChildren: () => import('./features/home/home.module').then(m => m.HomeModule)
+  },
+
+  {
+    path: 'survey/:id',
+    loadChildren: () =>
+      import('./features/survey/survey.module').then(m => m.SurveyModule)
+  }
 ]
 
 @NgModule({

@@ -1,0 +1,28 @@
+<ActionBar title="In-Situ Survey"></ActionBar>
+
+<ScrollView height="100%">
+  <StackLayout *ngIf="place">
+    <StackLayout padding="10 20">
+      <Label
+        marginTop="15"
+        fontSize="25"
+        fontWeight="500"
+        class="text-primary"
+        textWrap="true"
+        [text]="place?.survey[0]?.questions[currentQuestionIndex]?.question"
+      ></Label>
+      <StackLayout orientation="horizontal">
+        <ng-container *ngFor="let answer of place?.survey[0]?.questions[currentQuestionIndex]?.answers">
+          <Label
+            fontSize="30"
+            class="text-secondary"
+            textAlignment="center"
+            [text]="answer"
+            (click)="onAnswerSelected(answer)"
+          ></Label>
+        </ng-container>
+      </StackLayout>
+      <Button text="Next Question" (click)="onNextQuestion()" *ngIf="selectedAnswer && currentQuestionIndex < place?.survey[0]?.questions.length - 1"></Button>
+    </StackLayout>
+  </StackLayout>
+</ScrollView>

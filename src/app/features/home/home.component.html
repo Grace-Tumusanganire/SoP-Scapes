@@ -1,0 +1,69 @@
+<!-- src/app/features/home/home.component.html -->
+
+<ActionBar>
+    <GridLayout rows="auto auto" columns="auto, *">
+      <Image row="1" col="0" src="~/app/assets/logomodified.png" width="47" height="47" verticalAlignment="center" margin="0"></Image>
+      <Label row="1" col="1" text="SoP-Scapes Castellon" class="action-bar-title" fontSize="20" fontWeight="700" textAlignment="left" marginLeft="20"></Label>
+    </GridLayout>
+</ActionBar>
+
+
+<StackLayout height = "100%" class="p-20">
+
+    <Label 
+    text="Welcome to SoP-Scapes"  
+    margin="0 10 5 0" 
+    fontWeight="500"
+    class="text-primary"
+    fontSize="20"
+    textWrap="true"
+    textAlignment="center">
+    </Label>
+
+    <Label 
+    text="You will receive a real time survey on your visit to any of the places below:" 
+    margin="0 10 15 0"
+    textAlignment="center"
+    fontSize="18" 
+    fontWeight="400"
+    textWrap="true">
+    </Label>
+
+   <ListView height="100%" 
+   separatorColor="transparent" 
+   [items]="places"
+   (itemTap)="onPlaceTap($event)"
+   >
+    <ng-template let-item="item" >
+        <GridLayout
+        
+        height="280"
+        rows="*, auto, auto"
+        columns="*"
+        class="bg-secondary"
+        borderRadius="10"
+        margin="5 10 0 0"
+        padding="0"
+      >
+        <Image row="0" margin="10" stretch="aspectFill" [src]="item.image"></Image>
+        <Label
+          row="1"
+          margin="0 10 0 0"
+          fontWeight="700"
+          class="text-primary"
+          textAlignment="center"
+          fontSize="18"
+          [text]="item.title"
+        ></Label>
+        <!-- <Label
+          row="2"
+          margin="0 10 10 10"
+          class="text-secondary"
+          fontSize="14"
+          textWrap="true"
+          [text]="item.description"
+        ></Label> -->
+      </GridLayout>
+    </ng-template>
+  </ListView>
+</StackLayout>
