@@ -1,0 +1,13 @@
+/* src/app/features/survey/survey.component.css */
+
+/* src/app/features/details/survey.component.css */
+.survey-container {
+    align-items: center; /* Center content horizontally */
+    justify-content: center; /* Center content vertically */
+    flex: 1; /* Allow the content to take up the entire available space */
+  }
+  
+  .survey-content {
+    max-width: 80%; /* Limit the content width to 80% of the available space */
+  }
+  

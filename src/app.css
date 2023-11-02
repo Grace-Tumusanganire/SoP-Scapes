@@ -2,6 +2,11 @@
 @import '@nativescript/theme/css/core.css';
 @import '@nativescript/theme/css/default.css';
 
+Button.-primary {
+  font-size: 20;
+}
+
+
 /* applied when device is in light mode */
 .ns-light .bg-primary {
   background-color: #fdfdfd;
@@ -16,6 +21,12 @@
   color: #212121;
 }
 
+.ns-light .button {
+  background-color: #007BFF;
+  color: #fff;
+  border-color: #007BFF;
+}
+
 /* applied when device is in dark mode */
 .ns-dark .bg-primary {
   background-color: #212121;
@@ -28,4 +39,10 @@
 }
 .ns-dark .text-secondary {
   color: #fdfdfd;
+}
+
+.ns-dark .button {
+  background-color: #77aadd;
+  color: #fff;
+  border-color: #77aadd;
 }

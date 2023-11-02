@@ -18,11 +18,14 @@
     "@awarns/human-activity": "^1.0.0",
     "@awarns/notifications": "^1.0.2",
     "@awarns/persistence": "^1.1.1",
+    "@nativescript-community/ui-share-file": "^1.3.3",
     "@nativescript/angular": "^16.0.0",
     "@nativescript/core": "~8.6.0",
     "@nativescript/theme": "~3.0.2",
+    "@nativescript/zip": "^6.0.0",
     "nativescript-task-dispatcher": "^3.1.1",
     "rxjs": "~7.8.0",
+    "tns-core-modules": "^6.5.27",
     "zone.js": "~0.13.0"
   },
   "devDependencies": {

@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
 import { ItemsComponent } from './item/items.component'
 import { ItemDetailComponent } from './item/item-detail.component'
+import { BrowserModule } from '@angular/platform-browser';
 
 @NgModule({
   bootstrap: [AppComponent],

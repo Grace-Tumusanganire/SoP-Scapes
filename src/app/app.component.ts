@@ -1,7 +1,111 @@
-import { Component } from '@angular/core'
+import { Component } from '@angular/core';
+import { awarns } from '@awarns/core';
+import { AreaOfInterest, areasOfInterest } from '@awarns/geofencing';
+import { Router } from '@angular/router';
+import { TapActionType, notificationsManager } from '@awarns/notifications';
+
 
 @Component({
   selector: 'ns-app',
   templateUrl: './app.component.html',
 })
-export class AppComponent {}
+export class AppComponent {
+  constructor(private router: Router) {}
+  async ngOnInit(){
+  
+    const aois = await areasOfInterest.getAll();
+    const navigationOptions = {
+      moduleName: 'survey/survey.component.html', 
+      clearHistory: true, 
+    };
+    
+    const newAoIs: Array<AreaOfInterest> = [
+      // Update the area of interest with the information of the area of your choice
+      {
+        id: 'uji',
+        name: 'UJI Campus',
+        latitude: 39.9939082,
+        longitude: -0.0739913,
+        radius: 40000,
+      },
+      // You can add more than one area of interest
+      {
+        id: 'el grao',
+        name: 'El Grao',
+        latitude: 39.983949,
+        longitude: -0.039771,
+        radius: 40,
+      },
+    
+      {
+        id: 'city center',
+        name: 'City center',
+        latitude: 39.983949,
+        longitude: -0.039771,
+        radius: 40,
+      },
+    
+      {
+        id: 'parc ribalta',
+        name: 'Parc Ribalta',
+        latitude: 39.983949,
+        longitude: -0.039771,
+        radius: 40,
+      },
+    
+      {
+        id: 'parc rafalafena',
+        name: 'Parc Rafalafena',
+        latitude: 39.983949,
+        longitude: -0.039771,
+        radius: 40,
+      },
+    ];
+    
+    // Naive check, to see if areas of interest have already been setup
+    if (aois.length === newAoIs.length) {
+      console.log('Areas already set up!');
+      return;
+    }
+    // Ensure we start from something clean
+    await areasOfInterest.deleteAll();
+    
+    // Insert the new area(s)
+    await areasOfInterest.insert(newAoIs);
+    console.log('Done setting up areas of interest!');
+  
+    /* 2. Then, setup tasks. This way, the geofencing task will already have the areas of interest */
+    
+    // This checks if all the registered tasks meet their pre-execution conditions:
+    // - Permissions are granted
+    // - System services are enabled
+    const isReady = await awarns.isReady();
+    if (!isReady) {
+      const tasksNotReady = await awarns.tasksNotReady$;
+      // This allows to query which task(s), from the ones in use, are not ready
+      // You can use this information to, for example, conditionally show different UI elements here, showing a rationale to your users about why certain permission or functionality must be activated
+      console.log(`The following tasks are not ready!: ${tasksNotReady}`);
+      // This will automatically perform all the actions needed to prepare the tasks that are not yet ready
+      await awarns.prepare();
+      // Will throw an error if not all the tasks have been succesfully prepared
+    }
+    
+    /* 3. Finally, once everything else is ready, start the background execution workflow */
+    awarns.emitEvent('startEvent');
+
+
+  notificationsManager.onNotificationTap(
+    (notification) => {
+      if (notification.tapAction.type === 'DELIVER_QUESTIONS') {
+        this.router.navigate(['/survey']).catch((error) => {
+          console.error('Navigation error:', error);
+        });
+        
+      }
+
+    })
+  
+ }
+  
+}
+

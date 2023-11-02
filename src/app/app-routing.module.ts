@@ -16,7 +16,7 @@ const routes: Routes = [
   },
 
   {
-    path: 'survey/:id',
+    path: 'survey',
     loadChildren: () =>
       import('./features/survey/survey.module').then(m => m.SurveyModule)
   }
