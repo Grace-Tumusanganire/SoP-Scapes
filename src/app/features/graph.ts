@@ -18,19 +18,19 @@ class AppTaskGraph implements TaskGraph {
     // Once a non-stationary action becomes detected, the location of the phone will be collected every 1 minute
     // The collection of the phone location will stop once the phone becomes still again
 
-    on(
-      'startEvent',
-      run('sendNotification', {
-        title: 'New content available', // All notifications must contain a title
-        body: 'This information may be valuable for you', // The body of the notification can be provided through here 
-                                                          // or inside the payload (data) of the event trigger, inside a 
-                                                          // property called body
-        tapAction: { // (Optional) If not provided, defaults to OPEN_APP
-          type: TapActionType.DELIVER_QUESTIONS, // See the rest of the options in the TapActionType enum
-          id: 'content-1', // For the app to distingish what content must be displayed after tapping the notification
-        },
-      })
-    );
+    // on(
+    //   'startEvent',
+    //   run('sendNotification', {
+    //     title: 'New content available', // All notifications must contain a title
+    //     body: 'This information may be valuable for you', // The body of the notification can be provided through here 
+    //                                                       // or inside the payload (data) of the event trigger, inside a 
+    //                                                       // property called body
+    //     tapAction: { // (Optional) If not provided, defaults to OPEN_APP
+    //       type: TapActionType.DELIVER_QUESTIONS, // See the rest of the options in the TapActionType enum
+    //       id: 'content-1', // For the app to distingish what content must be displayed after tapping the notification
+    //     },
+    //   })
+    // );
 
     // on('notificationTapped', run('displaySurvey'));
 

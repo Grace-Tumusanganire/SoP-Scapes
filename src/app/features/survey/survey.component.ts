@@ -7,7 +7,6 @@ import { ActivatedRoute } from '@angular/router'
 import { PlaceModel } from '../../core/models/place.model'
 import { PlaceService } from '../../core/services/place.service'
 import { Router } from '@angular/router'
-
 @Component({
   moduleId: module.id,
   selector: 'ns-survey',
@@ -61,6 +60,8 @@ export class SurveyComponent {
   onSubmit() {
     // You can now access the user's responses in this.userResponses
     console.log(this.userResponses);
+    console.log('User responses saved:', this.userResponses);
+    return this.userResponses
   }
 
   

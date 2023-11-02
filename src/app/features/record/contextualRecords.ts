@@ -1,15 +1,17 @@
 import { Record } from '@awarns/core/entities';
+import {SurveyComponent} from '../../features/survey/survey.component'
 
-export const QuestionnaireAnswersType = 'questionnaire-answers';
+export const contextualRecords = 'questionnaire-answers';
 
 export class QuestionnaireAnswers extends Record {
   constructor(
     public questionnaireId: string,
     public answers: Array<QuestionnaireAnswer>,
     public notificationId?: number,
-    answeredAt = new Date()
+    // public geolocation: Array<coordinates>,
+    answeredAt = new Date(),
   ) {
-    super(QuestionnaireAnswersType, answeredAt);
+    super(contextualRecords, answeredAt);
   }
 }
 

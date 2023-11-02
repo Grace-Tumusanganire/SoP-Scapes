@@ -94,16 +94,16 @@ export class AppComponent {
     awarns.emitEvent('startEvent');
 
 
-  notificationsManager.onNotificationTap(
-    (notification) => {
-      if (notification.tapAction.type === 'DELIVER_QUESTIONS') {
-        this.router.navigate(['/survey']).catch((error) => {
-          console.error('Navigation error:', error);
-        });
+  // notificationsManager.onNotificationTap(
+  //   (notification) => {
+  //     if (notification.tapAction.type === 'DELIVER_QUESTIONS') {
+  //       this.router.navigate(['/survey']).catch((error) => {
+  //         console.error('Navigation error:', error);
+  //       });
         
-      }
+  //     }
 
-    })
+  //   })
   
  }
   
