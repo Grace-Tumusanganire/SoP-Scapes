@@ -1,5 +1,5 @@
 import { Record } from '@awarns/core/entities';
-import {SurveyComponent} from '../../features/survey/survey.component'
+import {UserResponsesService} from '../survey/user-responses.service'
 
 export const contextualRecords = 'questionnaire-answers';
 

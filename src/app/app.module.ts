@@ -6,10 +6,10 @@ import { AppComponent } from './app.component'
 import { ItemsComponent } from './item/items.component'
 import { ItemDetailComponent } from './item/item-detail.component'
 import { BrowserModule } from '@angular/platform-browser';
-
+import { SurveyModule } from './features/survey/survey.module'
 @NgModule({
   bootstrap: [AppComponent],
-  imports: [NativeScriptModule, AppRoutingModule],
+  imports: [NativeScriptModule, AppRoutingModule, SurveyModule],
   declarations: [AppComponent, ItemsComponent, ItemDetailComponent],
   providers: [],
   schemas: [NO_ERRORS_SCHEMA],

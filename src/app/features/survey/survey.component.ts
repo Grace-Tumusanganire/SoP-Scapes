@@ -7,6 +7,8 @@ import { ActivatedRoute } from '@angular/router'
 import { PlaceModel } from '../../core/models/place.model'
 import { PlaceService } from '../../core/services/place.service'
 import { Router } from '@angular/router'
+import { UserResponsesService } from '../survey/user-responses.service'
+
 @Component({
   moduleId: module.id,
   selector: 'ns-survey',
@@ -20,7 +22,11 @@ export class SurveyComponent {
   userResponses: { questionId: number, emojiValue: number }[] = [];
   currentQuestionIndex: number = 0;
 
-  constructor(private surveyService: SurveyService,  private router: Router) {
+  constructor(
+    private surveyService: SurveyService,  
+    private router: Router,
+    private userResponsesService: UserResponsesService) {
+
     // Retrieve survey data from the service
     this.survey = this.surveyService.getSurvey();
   }
@@ -49,7 +55,7 @@ export class SurveyComponent {
       // If there is a next question, increment the index
       this.currentQuestionIndex++;
     } else {
-      // You can also show a message or take some action when all questions are answered.
+      // Showing a message or when all questions are answered.
       console.log("All questions answered.");
       this.currentQuestionIndex++; // Increment to go beyond the last question
       this.onSubmit()
@@ -58,9 +64,13 @@ export class SurveyComponent {
   }
 
   onSubmit() {
-    // You can now access the user's responses in this.userResponses
-    console.log(this.userResponses);
+
+   // console.log(this.userResponses);
+   
+    // Send the user responses to the UserResponsesService
+    this.userResponsesService.setUserResponses(this.userResponses);
     console.log('User responses saved:', this.userResponses);
+
     return this.userResponses
   }
 

@@ -1,4 +1,4 @@
-// src/app/features/survey/survey.model.ts
+// src/app/features/survey/survey.service.ts
 
 import { Injectable } from '@angular/core';
 import { SurveyModel } from './survey.model';
@@ -9,81 +9,6 @@ import { PlaceService } from '~/app/core/services/place.service';
   providedIn: 'root',
 })
 export class SurveyService {
-  // private surveys: SurveyModel[] = [
-  //   {
-  //     id: "periodic",
-  //     survey: [
-  //       {
-  //       questions:[
-  //         {id:1,
-  //         question:"I perform my daily main tasks in this place (work, school, chores)",
-  //         answers: [" 😡 ", " 😠 ", " 😐 ", " 😊 ", " 😃 "]},
-
-  //         {id:2,
-  //           question:"I gradually find this place suitable for accomplishing my tasks",
-  //           answers: [" 😡 ", " 😠 ", " 😐 ", " 😊 ", " 😃 "]},
-
-  //         {id:3,
-  //         question:"I feel joy when I visit this place.",
-  //         answers: [" 😡 ", " 😠 ", " 😐 ", " 😊 ", " 😃 "]},
-
-  //         {id:4,
-  //           question:"My social interactions evolve the more I visit this place.",
-  //           answers: [" 😡 ", " 😠 ", " 😐 ", " 😊 ", " 😃 "]},
-          
-  //         {id:5,
-  //         question:"I feel safe in this place",
-  //         answers: [" 😡 ", " 😠 ", " 😐 ", " 😊 ", " 😃 "]},
-
-  //         {id:6,
-  //           question:"I can easily commute to this place",
-  //           answers: [" 😡 ", " 😠 ", " 😐 ", " 😊 ", " 😃 "]},
-
-  //         {id:7,
-  //         question:"I feel relaxed while navigating in the city",
-  //         answers: [" 😡 ", " 😠 ", " 😐 ", " 😊 ", " 😃 "]},
-  //       ]}
-
-  //     ]
-  //   },
-  //   {
-  //     id: "frequent",
-  //     survey: [
-  //       {
-  //       questions:[
-  //       //   {id:1,
-  //       //   question:"I perform my daily main tasks in this place (work, school, chores)",
-  //       //   answers: [" 😡 ", " 😠 ", " 😐 ", " 😊 ", " 😃 "]},
-
-  //         {id:2,
-  //           question:"I gradually find this place suitable for accomplishing my tasks",
-  //           answers: [" 😡 ", " 😠 ", " 😐 ", " 😊 ", " 😃 "]},
-
-  //         {id:3,
-  //         question:"I feel joy when I visit this place.",
-  //         answers: [" 😡 ", " 😠 ", " 😐 ", " 😊 ", " 😃 "]},
-
-  //         {id:4,
-  //           question:"My social interactions evolve the more I visit this place.",
-  //           answers: [" 😡 ", " 😠 ", " 😐 ", " 😊 ", " 😃 "]},
-          
-  //         {id:5,
-  //         question:"I feel safe in this place",
-  //         answers: [" 😡 ", " 😠 ", " 😐 ", " 😊 ", " 😃 "]},
-
-  //       //   {id:6,
-  //       //     question:"I can easily commute to this place",
-  //       //     answers: [" 😡 ", " 😠 ", " 😐 ", " 😊 ", " 😃 "]},
-
-  //         {id:7,
-  //         question:"I feel relaxed while navigating in the city",
-  //         answers: [" 😡 ", " 😠 ", " 😐 ", " 😊 ", " 😃 "]},
-  //       ]}
-
-  //     ]
-  //   }
-   
-  // ];
 
   
 
@@ -93,7 +18,7 @@ export class SurveyService {
       questions: [
       {
         id:1,
-        question : "I perform my daily main tasks in this place (work, school, chores)",
+        question : "1. I perform my daily main tasks in this place (work, school, chores)",
         answers : [
           { value: 1, emoji: "😡" },
           { value: 2, emoji: "😠" },
@@ -105,7 +30,7 @@ export class SurveyService {
 
       {
         id:2,
-        question : "I gradually find this place suitable for accomplishing my tasks",
+        question : "2. I gradually find this place suitable for accomplishing my tasks",
         answers : [
           { value: 1, emoji: "😡" },
           { value: 2, emoji: "😠" },
@@ -117,7 +42,7 @@ export class SurveyService {
 
       {
         id:3,
-        question : "I feel joy when I visit this place",
+        question : "3. I feel joy when I visit this place",
         answers : [
           { value: 1, emoji: "😡" },
           { value: 2, emoji: "😠" },
@@ -129,7 +54,7 @@ export class SurveyService {
 
       {
         id:4,
-        question : "My social interactions evolve the more I visit this place",
+        question : "4. My social interactions evolve the more I visit this place",
         answers : [
           { value: 1, emoji: "😡" },
           { value: 2, emoji: "😠" },
@@ -141,7 +66,7 @@ export class SurveyService {
 
       {
         id:5,
-        question : "I feel safe in this place",
+        question : "5. I feel safe in this place",
         answers : [
           { value: 1, emoji: "😡" },
           { value: 2, emoji: "😠" },
@@ -153,7 +78,7 @@ export class SurveyService {
 
       {
         id:6,
-        question : "I can easily commute to this place",
+        question : "6. I can easily commute to this place",
         answers : [
           { value: 1, emoji: "😡" },
           { value: 2, emoji: "😠" },
@@ -165,7 +90,7 @@ export class SurveyService {
 
       {
         id:7,
-        question : "I feel relaxed while naviagating in the city",
+        question : "7. I feel relaxed while navigating in the city",
         answers : [
           { value: 1, emoji: "😡" },
           { value: 2, emoji: "😠" },
