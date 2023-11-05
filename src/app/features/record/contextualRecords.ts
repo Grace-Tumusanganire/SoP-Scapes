@@ -7,8 +7,8 @@ export class QuestionnaireAnswers extends Record {
   constructor(
     public questionnaireId: string,
     public answers: Array<QuestionnaireAnswer>,
+    public geolocation: Array<Geolocation>,
     public notificationId?: number,
-    // public geolocation: Array<coordinates>,
     answeredAt = new Date(),
   ) {
     super(contextualRecords, answeredAt);
@@ -16,7 +16,9 @@ export class QuestionnaireAnswers extends Record {
 }
 
 export interface QuestionnaireAnswer {
-  title: string;
-  answer: number | string | boolean;
-  millisecondsToAnswer?: number;
+  title: number;
+  answer: number;
+  time: Date;
+  location: GeolocationCoordinates;
+  millisecondsToAnswer: number;
 }

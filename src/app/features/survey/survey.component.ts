@@ -12,12 +12,15 @@ import { UserResponsesService } from '../survey/user-responses.service'
 @Component({
   moduleId: module.id,
   selector: 'ns-survey',
+  styleUrls: ['survey.component.css'],
   templateUrl: 'survey.component.html',
 })
 
 export class SurveyComponent {
   // survey = this.surveyService.getSurvey()
   // constructor(private surveyService: SurveyService){}
+
+  showSurvey: boolean = false; // Initially, the survey is hidden
   survey: any; // Define a suitable type for your survey data
   userResponses: { questionId: number, emojiValue: number }[] = [];
   currentQuestionIndex: number = 0;
@@ -29,6 +32,9 @@ export class SurveyComponent {
 
     // Retrieve survey data from the service
     this.survey = this.surveyService.getSurvey();
+
+    //Display survey
+    
   }
 
  
@@ -66,12 +72,21 @@ export class SurveyComponent {
   onSubmit() {
 
    // console.log(this.userResponses);
-   
+
     // Send the user responses to the UserResponsesService
     this.userResponsesService.setUserResponses(this.userResponses);
     console.log('User responses saved:', this.userResponses);
 
     return this.userResponses
+  }
+
+  show() {
+    this.showSurvey = true;
+  }
+
+  // Add a method to hide the survey
+  hide() {
+    this.showSurvey = false;
   }
 
   

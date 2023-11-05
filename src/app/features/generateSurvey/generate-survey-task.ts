@@ -8,6 +8,7 @@ const EVENT = 'displaySurvey';
 //   moduleName: 'survey', 
 //   clearHistory: true, 
 // };
+
 export class GenerateSurveyTask extends Task {
 
   
@@ -22,14 +23,13 @@ export class GenerateSurveyTask extends Task {
     if (notification.tapAction.type === 'DELIVER_QUESTIONS') {
         this.router.navigate(['/survey']).catch((error) => {
             console.error('Navigation error:', error);
+        })
+    }   
   })
-
-}
   return {
      eventName: EVENT
-   
-  };
+ };
 
- })
+ 
 }
 }

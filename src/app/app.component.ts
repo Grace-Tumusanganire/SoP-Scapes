@@ -10,55 +10,124 @@ import { TapActionType, notificationsManager } from '@awarns/notifications';
   templateUrl: './app.component.html',
 })
 export class AppComponent {
+
   constructor(private router: Router) {}
+
   async ngOnInit(){
   
     const aois = await areasOfInterest.getAll();
-    const navigationOptions = {
-      moduleName: 'survey/survey.component.html', 
-      clearHistory: true, 
-    };
-    
+
     const newAoIs: Array<AreaOfInterest> = [
       // Update the area of interest with the information of the area of your choice
+
+      //UJI
       {
         id: 'uji',
         name: 'UJI Campus',
-        latitude: 39.9939082,
-        longitude: -0.0739913,
-        radius: 40000,
+        latitude: 39.994022,
+        longitude: -0.067909,
+        radius: 400,
       },
-      // You can add more than one area of interest
+      // City center
       {
-        id: 'el grao',
-        name: 'El Grao',
-        latitude: 39.983949,
-        longitude: -0.039771,
-        radius: 40,
+        id: 'citycenter',
+        name: 'City Center',
+        latitude: 39.986299,
+        longitude: -0.038167,
+        radius: 850,
       },
-    
+      // El grao Beaches -- 4
       {
-        id: 'city center',
-        name: 'City center',
-        latitude: 39.983949,
-        longitude: -0.039771,
-        radius: 40,
+        id: 'elgraob',
+        name: 'El Grao Beach',
+        latitude: 39.980817,
+        longitude: 0.027583,
+        radius: 400,
       },
-    
       {
-        id: 'parc ribalta',
+        id: 'elgraopl',
+        name: 'El Grao Palmeral',
+        latitude: 39.988042,
+        longitude: 0.029754,
+        radius: 400,
+      },
+      {
+        id: 'elgraopn',
+        name: 'El Grao Pinar',
+        latitude: 39.995349,
+        longitude: 0.031298,
+        radius: 400,
+      },
+      {
+        id: 'elgraog',
+        name: 'El Grao Gurugu',
+        latitude: 40.002471,
+        longitude: 0.034055,
+        radius: 400,
+      },
+      // Parks -- 9
+      {
+        id: 'merida',
+        name: 'Parc de Mèrida',
+        latitude: 39.981809,
+        longitude: -0.065452,
+        radius: 90,
+      },
+      {
+        id: 'botanica',
+        name: 'Parc de la Botànica Carmen Albert',
+        latitude: 39.99066,
+        longitude: -0.059401,
+        radius: 50,
+      },
+      {
+        id: 'eugenio',
+        name: 'Eugenio de Avilés Park',
+        latitude: 39.984199,
+        longitude: -0.031914,
+        radius: 25,
+      },
+      {
+        id: 'pontferro',
         name: 'Parc Ribalta',
-        latitude: 39.983949,
-        longitude: -0.039771,
-        radius: 40,
+        latitude: 39.994014,
+        longitude: -0.044098,
+        radius: 105,
       },
-    
       {
-        id: 'parc rafalafena',
+        id: 'bonarea',
+        name: 'Parc BonÀrea Caragols',
+        latitude: 39.980177,
+        longitude: -0.034985,
+        radius: 15,
+      },
+      {
+        id: 'josegeol',
+        name: 'Park geologist José Royo Gomez',
+        latitude: 39.97824,
+        longitude: -0.037987,
+        radius: 70,
+      },
+      {
+        id: 'ribalta',
+        name: 'Parc Ribalta',
+        latitude: 39.987699,
+        longitude: -0.045275,
+        radius: 140,
+      },
+      {
+        id: 'rafalafena',
         name: 'Parc Rafalafena',
-        latitude: 39.983949,
-        longitude: -0.039771,
-        radius: 40,
+        latitude: 39.9923,
+        longitude: -0.027006,
+        radius: 100,
+      },
+      {
+        id: 'guitarista',
+        name: 'Parc Guitarrista Manuel',
+        latitude: 39.992941,
+        longitude: -0.02406,
+        radius: 140,
       },
     ];
     
@@ -94,16 +163,15 @@ export class AppComponent {
     awarns.emitEvent('startEvent');
 
 
-  // notificationsManager.onNotificationTap(
-  //   (notification) => {
-  //     if (notification.tapAction.type === 'DELIVER_QUESTIONS') {
-  //       this.router.navigate(['/survey']).catch((error) => {
-  //         console.error('Navigation error:', error);
-  //       });
-        
-  //     }
+   notificationsManager.onNotificationTap(
+    (notification) => {
+      if (notification.tapAction.type === 'DELIVER_QUESTIONS') {
+        this.router.navigate(['/survey']).catch((error) => {
+          console.error('Navigation error:', error);
+        });
+      }
 
-  //   })
+    })
   
  }
   

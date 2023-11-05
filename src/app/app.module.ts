@@ -9,7 +9,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { SurveyModule } from './features/survey/survey.module'
 @NgModule({
   bootstrap: [AppComponent],
-  imports: [NativeScriptModule, AppRoutingModule, SurveyModule],
+  imports: [NativeScriptModule, AppRoutingModule],
   declarations: [AppComponent, ItemsComponent, ItemDetailComponent],
   providers: [],
   schemas: [NO_ERRORS_SCHEMA],

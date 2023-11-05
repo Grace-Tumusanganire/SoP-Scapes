@@ -1,6 +1,7 @@
 /* src/app/features/survey/survey.component.css */
+@import '@nativescript/theme/css/core.css';
+@import '@nativescript/theme/css/default.css';
 
-/* src/app/features/details/survey.component.css */
 .survey-container {
     align-items: center; /* Center content horizontally */
     justify-content: center; /* Center content vertically */
@@ -11,3 +12,13 @@
     max-width: 80%; /* Limit the content width to 80% of the available space */
   }
   
+  /* src/app/features/details/survey.component.css */
+
+.emoji-container {
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px; /* Adjust the gap to control the spacing between emojis */
+}
+
+
+

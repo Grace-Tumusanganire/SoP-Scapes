@@ -9,7 +9,7 @@
     <StackLayout padding="10" >
 
 <!-- DISPLAYING NEXT QUESTION ON EMOJI TAP    -->
-   
+<div *ngIf="showSurvey">
 <Label
 *ngIf="currentQuestionIndex < survey[0].questions.length"
 fontSize="17"
@@ -20,7 +20,7 @@ textWrap="true"
 textAlignment="center"
 [text]="survey[0].questions[currentQuestionIndex].question"
 ></Label>
-<StackLayout orientation="horizontal" *ngIf="currentQuestionIndex < survey[0].questions.length">
+<StackLayout orientation="horizontal" *ngIf="currentQuestionIndex < survey[0].questions.length" class="emoji-container">
 <ng-container *ngFor="let answer of survey[0].questions[currentQuestionIndex].answers">
   <button
     fontSize="23"
@@ -40,7 +40,7 @@ textAlignment="center"
 textWrap="true"
 text = "Thank you for answering this survey, see you on the next one"
 ></Label>
-
+</div>
  
   </StackLayout>
   </StackLayout>
