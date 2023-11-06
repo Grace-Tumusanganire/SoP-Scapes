@@ -7,7 +7,11 @@ import { ActivatedRoute } from '@angular/router'
 import { PlaceModel } from '../../core/models/place.model'
 import { PlaceService } from '../../core/services/place.service'
 import { Router } from '@angular/router'
-import { UserResponsesService } from '../survey/user-responses.service'
+import { exportData } from '../record/exportRecords';
+import { awarns } from '@awarns/core'
+import { QuestionnaireAnswer, QuestionnaireAnswers } from '../record/contextualRecords';
+import { recordsStore } from '@awarns/persistence'
+import { Change } from '@awarns/core/entities'
 
 @Component({
   moduleId: module.id,
@@ -17,27 +21,26 @@ import { UserResponsesService } from '../survey/user-responses.service'
 })
 
 export class SurveyComponent {
-  // survey = this.surveyService.getSurvey()
-  // constructor(private surveyService: SurveyService){}
-
-  showSurvey: boolean = false; // Initially, the survey is hidden
+  
   survey: any; // Define a suitable type for your survey data
   userResponses: { questionId: number, emojiValue: number }[] = [];
+  _userResponses: QuestionnaireAnswer[] = [];
+
   currentQuestionIndex: number = 0;
 
   constructor(
     private surveyService: SurveyService,  
     private router: Router,
-    private userResponsesService: UserResponsesService) {
+    ) {
 
     // Retrieve survey data from the service
     this.survey = this.surveyService.getSurvey();
 
-    //Display survey
     
+    // recordsStore.listLast('aoi-proximity-change').subscribe((record) => {
+    //   record.change === Change.START
+    // });
   }
-
- 
 
   onEmojiSelected(questionId: number, answerValue: number) {
     // Check if the question ID already exists in userResponses
@@ -69,25 +72,20 @@ export class SurveyComponent {
     }
   }
 
+
   onSubmit() {
 
-   // console.log(this.userResponses);
-
-    // Send the user responses to the UserResponsesService
-    this.userResponsesService.setUserResponses(this.userResponses);
     console.log('User responses saved:', this.userResponses);
+
+    const answers = new QuestionnaireAnswers('0', this._userResponses);
+
+    awarns.emitEvent('questionnaireAnswersAcquired', answers);
 
     return this.userResponses
   }
 
-  show() {
-    this.showSurvey = true;
-  }
-
-  // Add a method to hide the survey
-  hide() {
-    this.showSurvey = false;
-  }
-
+  sendResponses() {
+      exportData('Responses');
+    }
   
   }

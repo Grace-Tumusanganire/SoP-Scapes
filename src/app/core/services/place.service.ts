@@ -27,7 +27,6 @@ export class PlaceService {
       id: 4,
       title: 'Castellon Parks',
       image: '~/app/assets/parsks.png',
-     
     },
   ];
 

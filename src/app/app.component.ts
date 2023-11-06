@@ -1,17 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { awarns } from '@awarns/core';
 import { AreaOfInterest, areasOfInterest } from '@awarns/geofencing';
 import { Router } from '@angular/router';
 import { TapActionType, notificationsManager } from '@awarns/notifications';
-
+import { NgZone } from '@angular/core';
 
 @Component({
   selector: 'ns-app',
   templateUrl: './app.component.html',
 })
-export class AppComponent {
+export class AppComponent  {
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private zone: NgZone) {}
 
   async ngOnInit(){
   
@@ -163,16 +163,22 @@ export class AppComponent {
     awarns.emitEvent('startEvent');
 
 
-   notificationsManager.onNotificationTap(
-    (notification) => {
-      if (notification.tapAction.type === 'DELIVER_QUESTIONS') {
-        this.router.navigate(['/survey']).catch((error) => {
-          console.error('Navigation error:', error);
-        });
-      }
 
-    })
-  
+  notificationsManager.onNotificationTap((notification) => {
+    if (notification.tapAction.type === TapActionType.DELIVER_QUESTIONS) {
+      const questionnaireId = notification.tapAction.id;
+      if (questionnaireId === "FrequentSurvey") {
+        this.zone.run(() => {
+          this.router.navigate(['/survey']).catch((error) => {
+            console.error('Navigation error:', error);
+         })
+        });
+    }
+    } else {
+     console.log("No survey available")    
+    }
+  });
+
  }
   
 }

@@ -14,7 +14,7 @@ export class SurveyService {
 
   private survey: SurveyModel[] = [
     {
-      id:"all-time",
+      questionnaireId :"FrequentSurvey",
       questions: [
       {
         id:1,
@@ -121,7 +121,7 @@ getSurvey(): SurveyModel[] {
 
   getSurveyDataForPlace(placeId: number): SurveyModel | undefined {
 
-    const survey = this.survey.find((s)=> s.id === placeId.toString())
+    const survey = this.survey.find((s)=> s.questionnaireId === placeId.toString())
 
     if(survey){
         return survey;

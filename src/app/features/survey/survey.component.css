@@ -15,9 +15,10 @@
   /* src/app/features/details/survey.component.css */
 
 .emoji-container {
-  justify-content: center;
+  
+  /* justify-content: center;
   flex-wrap: wrap;
-  gap: 10px; /* Adjust the gap to control the spacing between emojis */
+  gap: 10px;  */
 }
 
 

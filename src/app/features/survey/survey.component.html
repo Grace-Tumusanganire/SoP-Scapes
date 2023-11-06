@@ -9,39 +9,44 @@
     <StackLayout padding="10" >
 
 <!-- DISPLAYING NEXT QUESTION ON EMOJI TAP    -->
-<div *ngIf="showSurvey">
 <Label
 *ngIf="currentQuestionIndex < survey[0].questions.length"
-fontSize="17"
+fontSize="20"
 fontWeight="700"
 class="text-primary"
-padding="0"
+padding="20"
 textWrap="true"
 textAlignment="center"
 [text]="survey[0].questions[currentQuestionIndex].question"
 ></Label>
-<StackLayout orientation="horizontal" *ngIf="currentQuestionIndex < survey[0].questions.length" class="emoji-container">
-<ng-container *ngFor="let answer of survey[0].questions[currentQuestionIndex].answers">
+<GridLayout columns="*,*,*,*,*" *ngIf="currentQuestionIndex < survey[0].questions.length" class="emoji-container">
+<ng-container col="2" *ngFor="let answer of survey[0].questions[currentQuestionIndex].answers; let i = index">
   <button
+    col="{{ answer.value - 1 }}"
+    style="width: 20%"
     fontSize="23"
-    padding = 5
     class="text-secondary"
     [text]="answer.emoji"
     (tap)="onEmojiSelected(survey[0].questions[currentQuestionIndex].id, answer.value)"
   ></button>
 </ng-container>
-</StackLayout>
+</GridLayout>
+
 <Label
 *ngIf="currentQuestionIndex >= survey[0].questions.length"
-fontSize="17"
+fontSize="20"
 fontWeight="700"
 fontWeight="700"
 textAlignment="center"
 textWrap="true"
 text = "Thank you for answering this survey, see you on the next one"
 ></Label>
-</div>
- 
-  </StackLayout>
-  </StackLayout>
+<Button *ngIf="currentQuestionIndex >= survey[0].questions.length"
+text="Send response"
+(tap)="sendResponses()"
+class='-primary'
+padding = 5></Button>
+
+</StackLayout>
+</StackLayout>
 </ScrollView>

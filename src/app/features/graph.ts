@@ -18,25 +18,18 @@ class AppTaskGraph implements TaskGraph {
     // Once a non-stationary action becomes detected, the location of the phone will be collected every 1 minute
     // The collection of the phone location will stop once the phone becomes still again
 
-
-
     on(
       'startEvent',
       run('sendNotification', {
-        title: 'New content available', // All notifications must contain a title
-        body: 'This information may be valuable for you', // The body of the notification can be provided through here 
-                                                          // or inside the payload (data) of the event trigger, inside a 
-                                                          // property called body
-        tapAction: { // (Optional) If not provided, defaults to OPEN_APP
-          type: TapActionType.DELIVER_QUESTIONS, // See the rest of the options in the TapActionType enum
-          id: 'content-1', // For the app to distingish what content must be displayed after tapping the notification
-        },
+        title: "SoP-Scapes In-situ Survey",
+        body: "In-situ survey generated, tap on this notification to respond",
+        tapAction: {
+          type: TapActionType.DELIVER_QUESTIONS,
+          id: "FrequentSurvey",
+        }
       })
     );
 
-    // on('notificationTapped', run('displaySurvey'));
-
-    // on('notificationTapped', run('generateSurveypage'));
 
     on('userFinishedBeingStill', run('acquirePhoneGeolocation').every(1, 'minutes').cancelOn('userStartedBeingStill'));
 
@@ -60,10 +53,10 @@ class AppTaskGraph implements TaskGraph {
     );
 
     on('movedInsideAreaOfInterest', run('writeRecords'));
-    // on('notificationTapped', run('writeRecords'));
-    // on('notificationCleared', run('writeRecords'));
 
-    on('questionnaireAnswersAcquired', run('writeRecords'));
+    // on('notificationTapped', run('writeRecords'));
+
+    // on('questionnaireAnswersAcquired', run('writeRecords'));
 
 
 // All the framework tasks output objects compatible the Record API (see core docs)

@@ -8,9 +8,6 @@ import { acquirePhoneGeolocationTask } from '@awarns/geolocation';
 import { checkAreaOfInterestProximityTask } from '@awarns/geofencing';
 import { sendNotificationTask } from '@awarns/notifications';
 import { writeRecordsTask } from '@awarns/persistence';
-import {GenerateSurveyTask} from '../features/generateSurvey/generate-survey-task'
-import { Router } from '@angular/router'; // Import the Router
-import {GeneratePlaceSurveyTask} from './generateSurvey/generate-survey-place-task'
 export const appTasks: Array<Task> = [
   // START: human activity recognition tasks
   startDetectingCoarseHumanActivityChangesTask(),
@@ -35,12 +32,6 @@ export const appTasks: Array<Task> = [
   sendNotificationTask(),
   // END: user notification tasks (see notifications plugin docs to learn about this task and more)
   
-  // START: app-specific tasks
-  // new GenerateSurveyTask(),
-  // END: app-specific tasks
-
-
-  // new GeneratePlaceSurveyTask(),
 
   // START: information persistence tasks
   writeRecordsTask(),

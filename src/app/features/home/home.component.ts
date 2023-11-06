@@ -29,6 +29,7 @@ export class HomeComponent {
 
     onPlaceTap(placeId: number) {
       this.router.navigate(['/survey', placeId]);
+
     }
     
 

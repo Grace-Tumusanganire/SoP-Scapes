@@ -1,7 +1,7 @@
 // src/app/features/survey/survey.model.ts
 
 export interface SurveyModel {
-    id: string;
+    questionnaireId : string;
     questions :{
         id:number
         question: string
