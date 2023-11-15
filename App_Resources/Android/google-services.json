@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "692794023431",
+    "firebase_url": "https://sopscapes-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "sopscapes",
+    "storage_bucket": "sopscapes.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:692794023431:android:6153b56151e127de8454a2",
+        "android_client_info": {
+          "package_name": "com.grace.sops"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBklqclpPS9d1jEllRV6J8s8t-k0iT6NfQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

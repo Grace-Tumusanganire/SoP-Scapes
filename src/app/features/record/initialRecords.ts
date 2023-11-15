@@ -1,11 +1,11 @@
 import { Record } from '@awarns/core/entities';
 
-export const contextualRecords = 'questionnaire-answers';
+export const initialRecords = 'questionnaire-answers';
 
 export class QuestionnaireAnswers extends Record {
   constructor(
     public questionnaireId: string,
-    public answers: Array<QuestionnaireResponse>,
+    public answers: Array<InitialResponse>,
     public duuid: string,
     answeredAt = new Date(),
   
@@ -22,13 +22,8 @@ export class QuestionnaireAnswers extends Record {
         hour12: false,
         timeZone: 'Europe/Madrid'
       });
-    super(contextualRecords, answeredAt);
+    super(initialRecords, answeredAt);
   }
-}
-
-export interface QuestionnaireResponse {
-  questionId: number;
-  emojiValue: number;
 }
 
 export interface InitialResponse {

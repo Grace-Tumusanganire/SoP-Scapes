@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-	package="__PACKAGE__">
+	package="__PACKAGE__"  >
 
 	<supports-screens
 		android:smallScreens="true"
 		android:normalScreens="true"
 		android:largeScreens="true"
 		android:xlargeScreens="true"/>
+
+	<uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS"/>
 
 	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
@@ -30,7 +32,8 @@
       		android:launchMode="singleTask"
 			android:exported="true">
 
-			<meta-data android:name="SET_THEME_ON_LAUNCH" android:resource="@style/AppTheme" />
+			<meta-data android:name="SET_THEME_ON_LAUNCH" android:resource="@style/AppTheme" 
+			/>
 
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />
@@ -38,5 +41,17 @@
 			</intent-filter>
 		</activity>
 		<activity android:name="com.tns.ErrorReportActivity"/>
+
+		<provider
+  			android:name="androidx.core.content.FileProvider"
+  			android:authorities="__PACKAGE__.provider"
+  			android:grantUriPermissions="true"
+  			android:exported="false" 
+			>
+  			<meta-data 
+    			android:name="android.support.FILE_PROVIDER_PATHS"
+    			
+				/>
+		</provider>
 	</application>
 </manifest>

@@ -1,0 +1,109 @@
+<!-- src/app/features/details/surveyI.component.html -->
+
+<ActionBar>
+  <ActionBar>
+    <GridLayout rows="auto auto" columns="auto, *">
+      <Label
+        row="1"
+        col="1"
+        text="Pre-Experiment Survey"
+        class="action-bar-title"
+        fontSize="20"
+        fontWeight="800"
+        textAlignment="center"
+      ></Label>
+    </GridLayout>
+  </ActionBar>
+</ActionBar>
+
+<!-- Flexible survey page -->
+
+<ScrollView height="100%">
+  <StackLayout>
+    <StackLayout padding="50%">
+      <ng-container *ngFor="let question of survey[1].questions; let i = index">
+        <Label
+          *ngIf="question.id === 1 || question.id === 3"
+          fontSize="18"
+          fontWeight="500"
+          class="text-primary"
+          padding="10"
+          textWrap="true"
+          textAlignment="center"
+          [text]="question.question"
+        ></Label>
+
+        <TextField
+          *ngIf="question.id === 1"
+          (textChange)="onEmailChange($event)"
+          [text]="email"
+          hint="Email address"
+          textAlignment="center"
+          padding="10"
+        >
+        </TextField>
+
+        <TextField
+          *ngIf="question.id === 3"
+          (textChange)="onZipsChange($event)"
+          textAlignment="center"
+          [text]="zips"
+          hint="Zip code / street name"
+          padding="10"
+        >
+        </TextField>
+
+        <!-- Display only for question with buttons -->
+        <StackLayout *ngIf="question.id === 2">
+          <Label
+            fontSize="18"
+            fontWeight="500"
+            class="text-primary"
+            padding="20"
+            textWrap="true"
+            textAlignment="center"
+            [text]="question.question"
+          ></Label>
+          <Button
+            *ngFor="let answer of question.answers"
+            [text]="answer.emoji"
+            (tap)="checkAndPushPreviousAnswer(answer.value)"
+            class="small-cute-button"
+          ></Button>
+        
+          <!-- <CheckBox
+          #yourCheckBoxId
+          boxType="circle"
+          *ngFor="let answer of question.answers"
+          (checkedChange)="onResLChange($event)"
+          class="small-cute-checkbox"
+          [text]="answer.emoji"
+          [checked]="isChecked(currentQuestion.id, answer.emoji)"
+          (checkedChange)="onCheckboxChange(currentQuestion.id, answer.emoji, $event)"
+        ></CheckBox> -->
+        
+        </StackLayout>
+      </ng-container>
+     
+      <StackLayout paddingTop = '10'>
+      <Button
+        text="Submit Responses"
+        (tap)="onSubmit()"
+        class="-primary"
+        fontWeight="500"
+      ></Button>
+    </StackLayout>
+    
+      <StackLayout *ngIf="showSecondStackLayout" verticalAlignment="center" columns="auto" rows="auto auto" horizontalAlignment="center" padding="20" >
+    <Image src="~/app/assets/btck.png" width="300" height="100"></Image>
+    <Label
+      fontSize="20"
+      fontWeight="700"
+      textAlignment="center"
+      textWrap="true"
+      text="You're all set for participating in the experiment, See you on in-situ surveys 😊"
+    ></Label>
+  </StackLayout>
+    </StackLayout>
+  </StackLayout>
+</ScrollView>

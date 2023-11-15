@@ -14,12 +14,22 @@
   
   /* src/app/features/details/survey.component.css */
 
-.emoji-container {
-  
-  /* justify-content: center;
-  flex-wrap: wrap;
-  gap: 10px;  */
+
+
+.small-cute-button {
+  width: 50%; 
+  height: 50%;
+  font-size: 14; 
+  border-radius: 50%; 
+  margin: 5px; 
 }
 
-
+/* .small-cute-checkbox {
+  width: 70%; 
+  height: 70%; 
+  font-size: 14; 
+  border-radius: 25px;
+  margin: 5px; 
+  
+} */
 

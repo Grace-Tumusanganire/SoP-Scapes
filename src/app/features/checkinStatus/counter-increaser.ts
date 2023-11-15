@@ -6,14 +6,13 @@
 //     TaskParams,
 // } from '@awarns/core/tasks';
 // import { VisitCountersStore } from './visit-counters';
-// import { AccumulatedAoIVisit } from './accumulated-visit';
-// import { AoIProximityChange } from '@awarns/geofencing';
+// import { AccumulatedAoIVisit } from './visit-counter';
 
 
 // export class VisitCounterIncreaser extends Task {
 //     constructor(
 //         name: string,
-//         private store: VisitCountersStore
+//         private store: ExposuresStore
 //     ) {
 //         super(name, {
 //             outputEventNames: ['visitCounterIncreased'],
@@ -36,10 +35,11 @@
 //         const visits = await Promise.all(aoiIds.map((id) => this.store.get(id)));
         
 //         const accumulatedVisits = [];
-
 //         for (let i = 0; i < changes.length; i++) {
-//             accumulatedVisits.push(new AccumulatedAoIVisit (changes[i].aoi, visits[i])
-//             );
+//           accumulatedVisits.push(new AccumulatedAoIVisit(
+//             changes[i].aoi,
+//             visits[i]
+//           ));
 //         }
 //         return {
 //           eventName: 'visitCounterIncreased', // This is optional, as this task can only produce one type of event 

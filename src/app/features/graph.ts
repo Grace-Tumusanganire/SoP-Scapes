@@ -21,16 +21,15 @@ class AppTaskGraph implements TaskGraph {
     on(
       'startEvent',
       run('sendNotification', {
-        title: "SoP-Scapes In-situ Survey",
-        body: "In-situ survey generated, tap on this notification to respond",
+        title: "SoP-Scapes Successfully Installed",
+        body: "Tap on this notification to respond to the pre-experiment survey",
         tapAction: {
           type: TapActionType.DELIVER_QUESTIONS,
-          id: "FrequentSurvey",
+          id: "InitialSurvey",
         }
       })
     );
-
-
+    
     on('userFinishedBeingStill', run('acquirePhoneGeolocation').every(1, 'minutes').cancelOn('userStartedBeingStill'));
 
     // // Each time a geolocation becomes acquired, we'll check how close it is to the known areas of interest (which we'll set up later)
@@ -41,22 +40,25 @@ class AppTaskGraph implements TaskGraph {
       })
     );
 
-// // A survey notification is sent once the the phone is found inside the AoI
+
+    on('movedInsideAreaOfInterest', run('writeRecords'));
+
+   //  A survey notification is sent once the the phone is found inside the AoI
     on('movedInsideAreaOfInterest',
        run('sendNotification', {
-         title: "SoP-Scapes In-situ Survey",
+         title: "SoP-Scapes: In-situ Survey",
          body: "In-situ survey generated, tap on this notification to respond",
          tapAction: {
            type: TapActionType.DELIVER_QUESTIONS,
+           id: "FrequentSurvey",
          }
        })
     );
 
-    on('movedInsideAreaOfInterest', run('writeRecords'));
 
-    // on('notificationTapped', run('writeRecords'));
+    on('notificationTapped', run('writeRecords'));
 
-    // on('questionnaireAnswersAcquired', run('writeRecords'));
+    on('questionnaireAnswersAcquired', run('writeRecords'));
 
 
 // All the framework tasks output objects compatible the Record API (see core docs)

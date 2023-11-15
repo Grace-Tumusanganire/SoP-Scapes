@@ -4,14 +4,17 @@ import { Component } from '@angular/core'
 import {SurveyService} from './survey.service'
 import { RouterExtensions } from '@nativescript/angular'
 import { ActivatedRoute } from '@angular/router'
-import { PlaceModel } from '../../core/models/place.model'
 import { PlaceService } from '../../core/services/place.service'
 import { Router } from '@angular/router'
 import { exportData } from '../record/exportRecords';
 import { awarns } from '@awarns/core'
-import { QuestionnaireAnswer, QuestionnaireAnswers } from '../record/contextualRecords';
+import { QuestionnaireAnswers, QuestionnaireResponse } from '../record/contextualRecords';
 import { recordsStore } from '@awarns/persistence'
 import { Change } from '@awarns/core/entities'
+import { AppComponent } from '~/app/app.component'
+import { Device } from 'tns-core-modules'
+// import  * as email from '@nativescript/email';
+import { Application } from '@nativescript/core'
 
 @Component({
   moduleId: module.id,
@@ -21,26 +24,32 @@ import { Change } from '@awarns/core/entities'
 })
 
 export class SurveyComponent {
+
   
   survey: any; // Define a suitable type for your survey data
-  userResponses: { questionId: number, emojiValue: number }[] = [];
-  _userResponses: QuestionnaireAnswer[] = [];
+  //userResponses: { questionId: number, emojiValue: number }[] = [];
+  userResponses: QuestionnaireResponse[] = [];
 
   currentQuestionIndex: number = 0;
+
+  // composeOptions: email.ComposeOptions
 
   constructor(
     private surveyService: SurveyService,  
     private router: Router,
+    private routerExtensions: RouterExtensions
     ) {
 
-    // Retrieve survey data from the service
-    this.survey = this.surveyService.getSurvey();
 
-    
-    // recordsStore.listLast('aoi-proximity-change').subscribe((record) => {
-    //   record.change === Change.START
-    // });
+
+     // Retrieve survey data from the service
+      this.survey = this.surveyService.getSurvey();
+
+ 
+
   }
+
+  
 
   onEmojiSelected(questionId: number, answerValue: number) {
     // Check if the question ID already exists in userResponses
@@ -68,23 +77,45 @@ export class SurveyComponent {
       console.log("All questions answered.");
       this.currentQuestionIndex++; // Increment to go beyond the last question
       this.onSubmit()
+      const duuid = Device.uuid;
+      console.log('Device UUID:', duuid);
+      this.navigateBack()
+
 
     }
   }
-
 
   onSubmit() {
 
     console.log('User responses saved:', this.userResponses);
 
-    const answers = new QuestionnaireAnswers('0', this._userResponses);
+    
+    const duuid = Device.uuid;
+    const answers = new QuestionnaireAnswers('0', this.userResponses, duuid);
 
     awarns.emitEvent('questionnaireAnswersAcquired', answers);
+
 
     return this.userResponses
   }
 
+  navigateBack() {
+    setTimeout(() => {
+      this.router.navigate(['/home']);
+    }, 3000); // 2000 milliseconds (2 seconds) delay, adjust as needed
+  }
+
   sendResponses() {
+
+    // email.available().then(available => {
+
+    //  console.log(`The device email status is ${available}`);
+
+    //  if (available){
+    //   email.compose(this.composeOptions)
+    //  }
+    // }).catch(error => console.log(error));
+
       exportData('Responses');
     }
   

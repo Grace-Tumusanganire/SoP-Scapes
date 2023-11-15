@@ -19,10 +19,15 @@
     "@awarns/notifications": "^1.0.2",
     "@awarns/persistence": "^1.1.1",
     "@nativescript-community/ui-share-file": "^1.3.3",
-    "@nativescript/angular": "^16.0.0",
+    "@nativescript/angular": "^16.0.1",
     "@nativescript/core": "~8.6.0",
+    "@nativescript/email": "^2.1.0",
     "@nativescript/theme": "~3.0.2",
     "@nativescript/zip": "^6.0.0",
+    "@nstudio/nativescript-checkbox": "^2.0.5",
+    "device-uuid": "^1.0.4",
+    "nativescript-checkbox": "^3.0.3",
+    "nativescript-device": "^1.0.0",
     "nativescript-task-dispatcher": "^3.1.1",
     "rxjs": "~7.8.0",
     "tns-core-modules": "^6.5.27",
@@ -35,6 +40,7 @@
     "@nativescript/types": "~8.6.0",
     "@nativescript/webpack": "~5.0.18",
     "@ngtools/webpack": "~16.2.0",
+    "@types/uuid": "^9.0.7",
     "typescript": "~5.1.6"
   }
 }

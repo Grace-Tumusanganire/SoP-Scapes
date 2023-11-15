@@ -100,7 +100,36 @@ export class SurveyService {
         ]  
       }
     ]
+  },
+  {
+    questionnaireId: "InitialSurvey",
+    questions: [
+
+      {
+        id:1,
+        question : "Please fill in your email address",
+        answers : []  
+      },
+      {
+        id:3,
+        question : "Please fill in your home zip code / street name",
+        answers : [ ]  
+      },
+      {
+        id:2,
+        question : "How long have you been living in this city",
+        answers : [
+          { value: 6, emoji: "Less than 6 months" },
+          { value: 12, emoji: "More than 6 months" }
+        ]  
+      }
+
+
+    ]
   }
+
+  
+
   ]
 
 getSurvey(): SurveyModel[] {
@@ -119,14 +148,14 @@ getSurvey(): SurveyModel[] {
   }
   
 
-  getSurveyDataForPlace(placeId: number): SurveyModel | undefined {
+  getSurveybyQuestionnaireId(questionnaireId: string): SurveyModel | undefined {
 
-    const survey = this.survey.find((s)=> s.questionnaireId === placeId.toString())
+    const questionnaire = this.survey.find((s)=> s.questionnaireId === questionnaireId)
 
-    if(survey){
-        return survey;
+    if(questionnaire){
+        return questionnaire;
     } else {
-        console.error(`Survey data not found for place ID ${placeId}`);
+        console.error(`Survey questionnaire not found`);
         return undefined;
     }
 

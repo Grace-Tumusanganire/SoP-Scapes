@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <!--> Other strings <-->
+
+  <!-->
+    The notification channel used in Android 8.0 or higher to deliver foreground service sticky notifications.
+    (more info here: https://developer.android.com/training/notify-user/channels)
+  <-->
+  <string name="title_activity_kimera">SoP-Scapes</string>
+
+  <string name="task_dispatcher_channel_name">"Background location"</string>
+  <string name="task_dispatcher_channel_description">"Indicates when the app is accessing your location in background"</string>
+  <!-->
+    The notification title and content that your user will see in the status bar while the service is running in foreground.
+    (more info here: https://developer.android.com/guide/components/services#Foreground)
+  <-->
+  <string name="task_dispatcher_notification_title">"SoP-Scapes app is using your location"</string>
+  <string name="task_dispatcher_notification_content">""</string>
+
+  <!--> Other strings <-->
+</resources>

@@ -4,4 +4,5 @@ export interface PlaceModel {
     id: number
     title: string
     image: string
+    aois: string []
 }

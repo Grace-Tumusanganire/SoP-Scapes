@@ -1,6 +1,12 @@
 <!-- src/app/features/details/survey.component.html -->
 
-<ActionBar title="In-Situ Survey"></ActionBar>
+<ActionBar title="In-Situ Survey">
+  <ActionBar>
+    <GridLayout rows="auto auto" columns="auto, *">
+    <Label row="1" col="1" text="In-Situ Survey" class="action-bar-title" fontSize="20" fontWeight="800" textAlignment="center" ></Label>
+    </GridLayout>
+    </ActionBar>
+</ActionBar>
 
  <!-- Flexible survey page -->
 
@@ -16,6 +22,7 @@ fontWeight="700"
 class="text-primary"
 padding="20"
 textWrap="true"
+margin="20"
 textAlignment="center"
 [text]="survey[0].questions[currentQuestionIndex].question"
 ></Label>
@@ -32,21 +39,46 @@ textAlignment="center"
 </ng-container>
 </GridLayout>
 
+<!-- <GridLayout>
+
+
 <Label
 *ngIf="currentQuestionIndex >= survey[0].questions.length"
 fontSize="20"
 fontWeight="700"
 fontWeight="700"
 textAlignment="center"
+padding="20"
 textWrap="true"
 text = "Thank you for answering this survey, see you on the next one"
 ></Label>
-<Button *ngIf="currentQuestionIndex >= survey[0].questions.length"
+</GridLayout> -->
+
+
+
+<StackLayout verticalAlignment = "center" columns="auto" rows="auto auto" horizontalAlignment="center" padding = "20" >
+  <Image
+     *ngIf="currentQuestionIndex >= survey[0].questions.length"
+     src="~/app/assets/btck.png"
+     width="300"
+     height="100"
+  ></Image>
+  <Label
+     *ngIf="currentQuestionIndex >= survey[0].questions.length"
+     fontSize="20"
+     fontWeight="700"
+     textAlignment="center"
+     textWrap="true"
+     text="Thank you for answering this survey, see you on the next one 😊"
+  ></Label>
+  </StackLayout>
+
+<!-- <Button *ngIf="currentQuestionIndex >= survey[0].questions.length"
 text="Send response"
 (tap)="sendResponses()"
 class='-primary'
-padding = 5></Button>
-
+fontWeight="500"
+padding = 5></Button> -->
 </StackLayout>
 </StackLayout>
 </ScrollView>

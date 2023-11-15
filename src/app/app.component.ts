@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { TapActionType, notificationsManager } from '@awarns/notifications';
 import { NgZone } from '@angular/core';
 
+// const firebase = require("nativescript-plugin-firebase");
+
 @Component({
   selector: 'ns-app',
   templateUrl: './app.component.html',
@@ -13,7 +15,22 @@ export class AppComponent  {
 
   constructor(private router: Router, private zone: NgZone) {}
 
+ 
+
   async ngOnInit(){
+
+    // firebase.init({
+    //   // Optionally pass in properties for database, authentication and cloud messaging,
+    //   // see their respective docs.
+    // }).then(
+    //   () => {
+    //     console.log("firebase.init done");
+    //   },
+    //   error => {
+    //     console.log(`firebase.init error: ${error}`);
+    //   }
+    // );
+  
   
     const aois = await areasOfInterest.getAll();
 
@@ -148,7 +165,7 @@ export class AppComponent  {
     // This checks if all the registered tasks meet their pre-execution conditions:
     // - Permissions are granted
     // - System services are enabled
-    const isReady = await awarns.isReady();
+    let isReady = await awarns.isReady();
     if (!isReady) {
       const tasksNotReady = await awarns.tasksNotReady$;
       // This allows to query which task(s), from the ones in use, are not ready
@@ -159,10 +176,23 @@ export class AppComponent  {
       // Will throw an error if not all the tasks have been succesfully prepared
     }
     
+
+    
     /* 3. Finally, once everything else is ready, start the background execution workflow */
     awarns.emitEvent('startEvent');
 
-
+    
+    isReady = await awarns.isReady();
+    if (!isReady) {
+      const tasksNotReady = await awarns.tasksNotReady$;
+      // This allows to query which task(s), from the ones in use, are not ready
+      // You can use this information to, for example, conditionally show different UI elements here, showing a rationale to your users about why certain permission or functionality must be activated
+      console.log(`The following tasks are not ready!: ${tasksNotReady}`);
+      // This will automatically perform all the actions needed to prepare the tasks that are not yet ready
+      await awarns.prepare();
+      // Will throw an error if not all the tasks have been succesfully prepared
+    }
+    	
 
   notificationsManager.onNotificationTap((notification) => {
     if (notification.tapAction.type === TapActionType.DELIVER_QUESTIONS) {
@@ -173,6 +203,12 @@ export class AppComponent  {
             console.error('Navigation error:', error);
          })
         });
+    } else if (questionnaireId === "InitialSurvey") {
+      this.zone.run(() => {
+        this.router.navigate(['/surveyI']).catch((error) => {
+          console.error('Navigation error:', error);
+       })
+      });
     }
     } else {
      console.log("No survey available")    

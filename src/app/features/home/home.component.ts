@@ -6,7 +6,8 @@ import { ItemEventData } from '@nativescript/core'
 import { RouterExtensions } from '@nativescript/angular'
 import { SurveyService } from '../survey/survey.service'
 import { Router } from '@angular/router'
-
+import {PlaceTapService} from '../../core/services/placeTap.service'
+import { exportData } from '../record/exportRecords';
 
 @Component({
   moduleId: module.id,
@@ -20,6 +21,8 @@ export class HomeComponent {
     constructor(
       private placeService: PlaceService,
 
+      private placeTapService: PlaceTapService,
+
       private routerExtensions: RouterExtensions,
 
       private router: Router,
@@ -28,10 +31,33 @@ export class HomeComponent {
 
 
     onPlaceTap(placeId: number) {
-      this.router.navigate(['/survey', placeId]);
+
+      // const plcId = this.placeTapService.availSurvey()
+
+      this.placeTapService.showMessage();
+
+      // if (placeId){
+
+      //   this.router.navigate(['/survey', placeId]);
+      // }
+
+      // else {  
+        
+      //    this.placeTapService.showMessage();
+
+      // }
+
+      //const idSurvey = this.placeTapService.availSurvey();
+
+      // if placeTap is idSurvey => show survey (navigate) else show modal (alert)
 
     }
+
+    sendResponses() {
+        exportData('Responses');
+      }
     
 
 
+  
   }

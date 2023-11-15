@@ -1,9 +1,18 @@
 <!-- src/app/features/home/home.component.html -->
 
 <ActionBar>
-    <GridLayout rows="auto auto" columns="auto, *">
+    <GridLayout rows="auto auto" columns="auto, *,auto,">
       <Image row="1" col="0" src="~/app/assets/logomodified.png" width="47" height="47" verticalAlignment="center" margin="0"></Image>
-      <Label row="1" col="1" text="SoP-Scapes Castellon" class="action-bar-title" fontSize="20" fontWeight="700" textAlignment="left" marginLeft="20"></Label>
+      <Label row="1" col="1" text="SoP-Scapes" class="action-bar-title" fontSize="23" fontWeight="700" textAlignment="center" marginLeft="5"></Label>
+      <Button  row="1" col="3" 
+      text="Share"
+      (tap)="sendResponses()"
+      fontWeight="500"
+      fontSize="18"
+      class="-primary button"
+      margin="0"
+     >
+   </Button>
     </GridLayout>
 </ActionBar>
 

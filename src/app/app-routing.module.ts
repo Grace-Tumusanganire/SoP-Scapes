@@ -19,7 +19,14 @@ const routes: Routes = [
     path: 'survey',
     loadChildren: () =>
       import('./features/survey/survey.module').then(m => m.SurveyModule)
+  },
+
+  {
+    path: 'surveyI',
+    loadChildren: () =>
+      import('./features/survey/surveyI.module').then(m => m.SurveyIModule)
   }
+
 ]
 
 @NgModule({
