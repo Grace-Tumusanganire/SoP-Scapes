@@ -74,8 +74,8 @@ export class PlaceTapService {
     showMessage(){
 
         alert({
-          title: "Check notification tray for in-situ survey",
-          message: "Survey are generated via notifications once you are physically in this area",
+          title: "Check notification tray for today's survey",
+          message: "Surveys are generated via notifications once you are physically in this area",
           okButtonText: "OK"
       }).then(() => {
           console.log("Alert dialog closed.");
